@@ -1,18 +1,9 @@
-EXPLORE THE WORLD — GitHub Pages starter
+Explore the World v5.4 - Currency exchange display
 
-WHAT THIS IS
-A self-contained, mobile-friendly geography learning page. Country profiles, search, region filters, and a small quiz run in the browser. It does not need a backend or API key. It can be used over mobile data or Wi-Fi; users only need internet to load the hosted page.
+Changes: Country profiles now show an additional line under the currency name with the indicative value of 1 USD in the local currency. Rates are retrieved online and include the provider update date when available. If the rate service is unavailable or a currency is unsupported, the page displays a clear message instead of inventing a rate. Rates are indicative and may differ from bank/card/cash exchange rates.
 
-PUBLISH ON GITHUB PAGES
-1. Extract this ZIP.
-2. Create a new public GitHub repository, e.g. Explore-the-World.
-3. Upload the index.html file from the site folder into the repository root (not the entire enclosing folder).
-4. Open repository Settings > Pages.
-5. Under Build and deployment, choose Deploy from a branch; select main and /(root), then Save.
-6. Wait for the Pages URL to appear in Settings > Pages, then open it on phone and PC.
+Deployment: Upload site/index.html and site/.nojekyll to the root of your existing GitHub Pages repository, replacing the previous versions.
 
-UPDATES
-To change the page later, edit or replace index.html in the repository and commit the change. GitHub Pages will publish the update automatically.
+To-do list: (1) Add more countries to the guide later. (2) Plan an online language-to-English translation module as a separate staged feature. Quiz work is considered complete for now.
 
-NOTES
-This starter contains a compact sample of 24 countries, not a complete country database. Population figures are approximate learning-context values and may become outdated. We can expand and verify the dataset in a later revision. The map feature is intentionally deferred from this first build to keep it backend-free and easy to host.
+Note: Travel information and exchange rates can change. Check official sources and current rates before travelling.
