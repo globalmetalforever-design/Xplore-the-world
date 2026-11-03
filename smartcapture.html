@@ -52,6 +52,13 @@ const DB='smartcapture-db',STORE='images';let db,selectedBlob=null,selectedUrl=n
 history.pushState({smartCapturePage:true},'',location.href);
 window.addEventListener('popstate',()=>{
   if($('previewDialog').open){$('previewDialog').close();history.pushState({smartCapturePage:true},'',location.href);return;}
+  // Back from History or Storage returns to the main Capture tab first.
+  if(!$('historyView').classList.contains('hidden')||!$('settingsView').classList.contains('hidden')){
+    switchTo('capture');
+    history.pushState({smartCapturePage:true},'',location.href);
+    return;
+  }
+  // Back from the main Capture tab returns to the Xplore dashboard.
   location.replace('index.html');
 });
 const $=id=>document.getElementById(id);
