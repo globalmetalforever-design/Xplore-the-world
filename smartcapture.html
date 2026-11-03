@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102a43"><title>Smart Capture | Xplore the World</title>
+<style>
+:root{--navy:#102a43;--blue:#176b87;--teal:#2a9d8f;--paper:#f4f3ed;--ink:#17324a;--muted:#637887;--line:#dce5e8;--red:#a33b36}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(120deg,#102a43,#176b87 75%,#2a9d8f);color:white;padding:18px max(16px,calc((100% - 900px)/2)) 25px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.top a{color:white;text-decoration:none;border:1px solid #ffffff70;border-radius:25px;padding:7px 12px;font-size:13px}
+h1{font-size:clamp(27px,5vw,38px);margin:24px 0 4px}header p{margin:0;color:#e3f0f2}
+main{max-width:900px;margin:auto;padding:20px 16px 50px}.tabs{display:flex;gap:8px;margin-bottom:16px}.tab,button{border:0;border-radius:11px;padding:11px 15px;font:inherit;font-weight:650;cursor:pointer}.tab{background:#e5ecec;color:var(--ink)}.tab.active,button.primary{background:var(--blue);color:white}
+.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;margin-bottom:14px;box-shadow:0 5px 20px #102a4309}
+h2{font-size:19px;margin:0 0 12px}.muted{color:var(--muted);font-size:13px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
+button.secondary{background:#eaf1f1;color:var(--ink)}button.danger{background:#f9e9e7;color:var(--red)}button:disabled{opacity:.5;cursor:not-allowed}
+input,select{font:inherit}input[type=file]{display:block;width:100%;padding:13px;border:1px dashed #9db2bb;border-radius:12px;background:#f8fbfb}
+.preview{width:100%;max-height:380px;object-fit:contain;background:#edf1f1;border-radius:12px;margin-top:12px;display:none}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row .fit{flex:0 0 auto}
+select{padding:10px;border:1px solid var(--line);border-radius:9px;background:white}
+.notice{padding:11px 13px;border-radius:10px;background:#eef5f3;color:#45616c;font-size:13px;margin-top:12px}
+.item{display:flex;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}.thumb{width:58px;height:58px;object-fit:cover;border-radius:9px;background:#edf1f1}.iteminfo{min-width:0;flex:1}.iteminfo strong{display:block;overflow-wrap:anywhere}.iteminfo small{color:var(--muted)}
+.hidden{display:none!important}.meter{height:9px;background:#e8eeee;border-radius:20px;overflow:hidden;margin:9px 0}.meter span{display:block;height:100%;background:var(--teal);width:0}
+dialog{border:0;border-radius:16px;max-width:440px;width:calc(100% - 30px);padding:20px;box-shadow:0 15px 60px #0004}dialog::backdrop{background:#102a4377}
+@media(max-width:560px){.panel{padding:15px}.tab{flex:1}.actions button{flex:1}}
+</style>
+</head>
+<body>
+<header><div class="top"><strong>📷 SMART CAPTURE</strong><a href="index.html">← Dashboard</a></div><h1>Capture. Classify. Organise.</h1><p>Your documents stay in your own browser storage until you export them.</p></header>
+<main>
+<div class="tabs"><button class="tab active" id="captureTab">Capture</button><button class="tab" id="historyTab">History</button><button class="tab" id="settingsTab">Storage</button></div>
+<section id="captureView" class="panel">
+<h2>Capture a document</h2><p class="muted">Take a photo or choose an existing image. Camera access is requested by your browser.</p>
+<input id="fileInput" type="file" accept="image/*" capture="environment">
+<img id="preview" class="preview" alt="Selected document preview">
+<div id="classifyArea" class="hidden">
+<div class="actions"><button class="primary" id="classifyBtn">Identify document type</button><button class="secondary" id="clearBtn">Clear</button></div>
+<p id="classifyStatus" class="muted"></p>
+<div id="categoryArea" class="hidden">
+<label for="category"><strong>Confirm document category</strong></label>
+<div class="row" style="margin-top:8px"><select id="category"><option>Invoice</option><option>Receipt</option><option>Flyer</option><option>Notice</option><option>Other</option></select><button class="primary fit" id="saveBtn">Save image</button></div>
+</div></div>
+<div class="notice">Images are stored separately in this browser on this device. They are not uploaded to GitHub or shared with other users.</div>
+</section>
+<section id="historyView" class="panel hidden"><div class="row"><h2 style="margin:0">Saved images</h2><select id="filter"><option value="All">All categories</option><option>Invoice</option><option>Receipt</option><option>Flyer</option><option>Notice</option><option>Other</option></select></div><p class="muted" id="historySummary">Loading…</p><div id="historyList"></div><div class="actions"><button class="primary" id="exportAllBtn">Export all images</button><button class="secondary" id="metadataBtn">Export index (CSV)</button></div></section>
+<section id="settingsView" class="panel hidden"><h2>Storage management</h2><p class="muted">Choose the maximum space Smart Capture should use in this browser.</p><div class="row"><label for="limit"><strong>Storage limit</strong></label><select id="limit"><option value="100">100 MB</option><option value="250">250 MB</option><option value="500" selected>500 MB</option><option value="1000">1 GB</option><option value="2000">2 GB</option></select></div><div class="meter"><span id="usageBar"></span></div><p id="usageText" class="muted"></p><div class="notice">At 80% usage, the app warns you. At the limit, new saves are paused. Images are never automatically deleted.</div><h2 style="margin-top:22px">Cloud backup</h2><p class="muted">Google Drive is the first planned cloud connection. It will use each person's own Google account and private folder. Cloud upload is not active yet; we must configure Google's OAuth consent and client ID before enabling it.</p><button class="secondary" disabled>Google Drive — setup required</button><h2 style="margin-top:22px">Local backup</h2><p class="muted">Export your images to your phone or computer regularly. After checking the downloaded files, you can delete individual images from History.</p></section>
+</main>
+<dialog id="previewDialog"><button class="secondary" id="closeDialog">Close</button><img id="largePreview" style="width:100%;max-height:70vh;object-fit:contain;margin-top:12px" alt="Saved image"></dialog>
+<script>
+const DB='smartcapture-db',STORE='images';let db,selectedBlob=null,selectedUrl=null;
+const $=id=>document.getElementById(id);
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains(STORE)){const s=d.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});s.createIndex('category','category');}};req.onsuccess=()=>{db=req.result;resolve(db)};req.onerror=()=>reject(req.error)})}
+function allItems(){return new Promise((resolve,reject)=>{const r=db.transaction(STORE).objectStore(STORE).getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+function addItem(item){return new Promise((resolve,reject)=>{const r=db.transaction(STORE,'readwrite').objectStore(STORE).add(item);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+function removeItem(id){return new Promise((resolve,reject)=>{const r=db.transaction(STORE,'readwrite').objectStore(STORE).delete(id);r.onsuccess=resolve;r.onerror=()=>reject(r.error)})}
+function sizeOf(items){return items.reduce((n,x)=>n+x.blob.size,0)}
+function pretty(n){return n<1024*1024?(n/1024).toFixed(0)+' KB':(n/1024/1024).toFixed(1)+' MB'}
+function safeName(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function download(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
+function switchTo(which){['capture','history','settings'].forEach(v=>{$(v+'View').classList.toggle('hidden',v!==which);$(v+'Tab').classList.toggle('active',v===which)});if(which==='history')renderHistory();if(which==='settings')renderUsage()}
+['capture','history','settings'].forEach(v=>$(v+'Tab').onclick=()=>switchTo(v));
+$('fileInput').onchange=e=>{const f=e.target.files[0];if(!f)return;selectedBlob=f;if(selectedUrl)URL.revokeObjectURL(selectedUrl);selectedUrl=URL.createObjectURL(f);$('preview').src=selectedUrl;$('preview').style.display='block';$('classifyArea').classList.remove('hidden');$('categoryArea').classList.add('hidden');$('classifyStatus').textContent='Image ready. Identify the type or select a category manually.'};
+$('clearBtn').onclick=()=>{selectedBlob=null;$('fileInput').value='';$('preview').style.display='none';$('classifyArea').classList.add('hidden')};
+$('classifyBtn').onclick=async()=>{if(!selectedBlob)return;$('classifyStatus').textContent='Checking document…';$('categoryArea').classList.remove('hidden');try{if(!window.Tesseract){await new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';s.onload=res;s.onerror=rej;document.head.appendChild(s)})}const result=await Tesseract.recognize(selectedBlob,'eng');const t=result.data.text.toLowerCase();const scores={Invoice:(t.match(/invoice|gstin|tax invoice|bill to/g)||[]).length,Receipt:(t.match(/receipt|amount paid|payment received|cashier|thank you for shopping/g)||[]).length,Flyer:(t.match(/offer|sale|event|limited time|join us|discount/g)||[]).length,Notice:(t.match(/notice|important|circular|announcement|meeting/g)||[]).length};const best=Object.entries(scores).sort((a,b)=>b[1]-a[1])[0];if(best&&best[1]>0)$('category').value=best[0];$('classifyStatus').textContent='Suggested category: '+(best&&best[1]>0?best[0]:'Not certain')+'. Please confirm or change it. OCR runs in this browser; the text is not saved.'}catch(e){$('classifyStatus').textContent='Automatic identification is unavailable (internet connection may be needed on first use). Please choose the category manually.'}};
+$('saveBtn').onclick=async()=>{if(!selectedBlob)return;const items=await allItems(),limit=Number(localStorage.getItem('sc-limit')||500)*1024*1024;if(sizeOf(items)+selectedBlob.size>limit){alert('Storage limit reached. Export images and delete backed-up items before saving more.');return}const cat=$('category').value,n=items.filter(x=>x.category===cat).length+1,name=String(n).padStart(3,'0')+'-'+safeName(cat)+'-image.'+((selectedBlob.type.split('/')[1]||'jpg').replace('jpeg','jpg'));await addItem({blob:selectedBlob,category:cat,filename:name,created:new Date().toISOString(),bytes:selectedBlob.size});alert('Saved: '+name);$('clearBtn').click();renderUsage()};
+async function renderHistory(){const items=(await allItems()).sort((a,b)=>b.created.localeCompare(a.created)),f=$('filter').value,shown=items.filter(x=>f==='All'||x.category===f);$('historySummary').textContent=items.length+' images · '+pretty(sizeOf(items))+' used';$('historyList').innerHTML='';if(!shown.length){$('historyList').innerHTML='<p class="muted">No saved images in this category yet.</p>';return}for(const x of shown){const u=URL.createObjectURL(x.blob),el=document.createElement('div');el.className='item';const img=document.createElement('img');img.className='thumb';img.src=u;img.alt='';img.onclick=()=>{$('largePreview').src=u;$('previewDialog').showModal()};const info=document.createElement('div');info.className='iteminfo';const strong=document.createElement('strong');strong.textContent=x.filename;const small=document.createElement('small');small.textContent=x.category+' · '+new Date(x.created).toLocaleString()+' · '+pretty(x.bytes);info.append(strong,small);const dl=document.createElement('button');dl.className='secondary';dl.textContent='↓';dl.title='Download';dl.onclick=()=>download(x.blob,x.filename);const del=document.createElement('button');del.className='danger';del.textContent='×';del.title='Delete';del.onclick=async()=>{if(confirm('Delete '+x.filename+' from this browser? Make sure you have a backup.')){await removeItem(x.id);renderHistory();renderUsage()}};el.append(img,info,dl,del);$('historyList').append(el)}}
+$('filter').onchange=renderHistory;$('closeDialog').onclick=()=>$('previewDialog').close();
+async function renderUsage(){const items=await allItems(),used=sizeOf(items),lim=Number(localStorage.getItem('sc-limit')||500)*1024*1024,pct=Math.min(100,used/lim*100);$('usageBar').style.width=pct+'%';$('usageText').textContent=pretty(used)+' of '+pretty(lim)+' used ('+pct.toFixed(1)+'%) · '+items.length+' images';if(pct>=80) $('usageText').textContent+=' — Backup recommended.'}
+$('limit').value=localStorage.getItem('sc-limit')||'500';$('limit').onchange=()=>{localStorage.setItem('sc-limit',$('limit').value);renderUsage()};
+$('exportAllBtn').onclick=async()=>{const items=await allItems();if(!items.length){alert('No images to export.');return}for(let i=0;i<items.length;i++){download(items[i].blob,items[i].filename);await new Promise(r=>setTimeout(r,250))}alert('Export started. Check your Downloads folder and verify the files before deleting anything.')};
+$('metadataBtn').onclick=async()=>{const items=await allItems(),csv=['filename,category,created,bytes',...items.map(x=>[x.filename,x.category,x.created,x.bytes].map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(','))].join('\n');download(new Blob([csv],{type:'text/csv'}),'smartcapture-index.csv')};
+openDB().then(renderUsage).catch(e=>alert('Browser storage could not be opened: '+e.message));
+</script>
+</body></html>
