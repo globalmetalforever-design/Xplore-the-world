@@ -25,7 +25,7 @@ dialog{border:0;border-radius:16px;max-width:440px;width:calc(100% - 30px);paddi
 </style>
 </head>
 <body>
-<header><div class="top"><strong>📷 SMART CAPTURE</strong><a href="index.html">← Dashboard</a></div><h1>Capture. Classify. Organise.</h1><p>Your documents stay in your own browser storage until you export them.</p></header>
+<header><div class="top"><strong>📷 SMART CAPTURE</strong><a href="index.html">Exit to Home ↗</a></div><h1>Capture. Classify. Organise.</h1><p>Your documents stay in your own browser storage until you export them.</p></header>
 <main>
 <div class="tabs"><button class="tab active" id="captureTab">Capture</button><button class="tab" id="historyTab">History</button><button class="tab" id="settingsTab">Storage</button></div>
 <section id="captureView" class="panel">
@@ -47,6 +47,13 @@ dialog{border:0;border-radius:16px;max-width:440px;width:calc(100% - 30px);paddi
 <dialog id="previewDialog"><button class="secondary" id="closeDialog">Close</button><img id="largePreview" style="width:100%;max-height:70vh;object-fit:contain;margin-top:12px" alt="Saved image"></dialog>
 <script>
 const DB='smartcapture-db',STORE='images';let db,selectedBlob=null,selectedUrl=null;
+// Keep one in-app history entry so the phone's Back button returns to the dashboard
+// instead of closing the site when Smart Capture was opened directly.
+history.pushState({smartCapturePage:true},'',location.href);
+window.addEventListener('popstate',()=>{
+  if($('previewDialog').open){$('previewDialog').close();history.pushState({smartCapturePage:true},'',location.href);return;}
+  location.replace('index.html');
+});
 const $=id=>document.getElementById(id);
 function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB,1);req.onupgradeneeded=()=>{const d=req.result;if(!d.objectStoreNames.contains(STORE)){const s=d.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});s.createIndex('category','category');}};req.onsuccess=()=>{db=req.result;resolve(db)};req.onerror=()=>reject(req.error)})}
 function allItems(){return new Promise((resolve,reject)=>{const r=db.transaction(STORE).objectStore(STORE).getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
