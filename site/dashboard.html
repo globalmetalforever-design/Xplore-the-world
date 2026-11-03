@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102a43">
+<meta name="description" content="Your tools and learning space in Xplore the World.">
+<title>Xplore the World · Tools</title>
+<style>
+:root{--navy:#102a43;--blue:#176b87;--teal:#2a9d8f;--paper:#f4f3ed;--ink:#17324a;--muted:#637887;--line:#dce5e8}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(120deg,#102a43,#176b87 70%,#2a9d8f);color:#fff;padding:22px max(18px,calc((100% - 1080px)/2)) 34px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-weight:800;letter-spacing:.04em}.back{color:#fff;text-decoration:none;border:1px solid #ffffff70;border-radius:30px;padding:8px 13px;font-size:14px}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08;margin:32px 0 8px}header p{max-width:650px;margin:0;color:#e4f2f4}
+main{max-width:1080px;margin:auto;padding:26px 18px 55px}.intro{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}.intro h2{margin:0;font-size:23px}.intro p{margin:3px 0 0;color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;gap:16px;min-height:178px;box-shadow:0 7px 24px #102a430c}
+.symbol{width:58px;height:58px;flex:0 0 58px;border-radius:16px;background:#e8f2f2;display:grid;place-items:center;font-size:29px}
+.content{display:flex;flex-direction:column;align-items:flex-start;min-width:0}.content h3{font-size:19px;margin:1px 0 5px}.content p{font-size:14px;color:var(--muted);margin:0 0 14px}
+.status{font-size:11px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:#537181;background:#eef3f3;border-radius:20px;padding:5px 9px;margin-top:auto}
+.note{margin-top:22px;padding:15px 17px;background:#eaf1ef;border:1px solid #dce8e3;border-radius:14px;color:#45616c;font-size:13px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:0 18px 25px}
+@media(max-width:620px){header{padding:18px 16px 27px}.grid{grid-template-columns:1fr;gap:12px}.card{padding:17px;min-height:155px}.intro{display:block}.intro p{margin-top:5px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="brand">🌐 XPLORE THE WORLD</div><a class="back" href="index.html">← Main website</a></div>
+  <h1>Your tools.<br>Your world.</h1>
+  <p>A simple place to access useful tools and explore new ideas. Choose an application below.</p>
+</header>
+<main>
+  <div class="intro"><div><h2>Explore Tools</h2><p>Four experiences, one home on the web.</p></div></div>
+  <section class="grid" aria-label="Applications">
+    <article class="card"><div class="symbol" aria-hidden="true">📷</div><div class="content"><h3>Smart Capture</h3><p>Capture, classify and organise documents and images.</p><span class="status">Integration planned</span></div></article>
+    <article class="card"><div class="symbol" aria-hidden="true">▶️</div><div class="content"><h3>YouTube Summarizer</h3><p>Turn long videos into clear, useful summaries.</p><span class="status">Integration planned</span></div></article>
+    <article class="card"><div class="symbol" aria-hidden="true">🎙️</div><div class="content"><h3>Voice Travel Translator</h3><p>Speak in English, translate into another language and play the translation.</p><span class="status">Integration planned</span></div></article>
+    <article class="card"><div class="symbol" aria-hidden="true">🌍</div><div class="content"><h3>Learning About the World</h3><p>Discover libraries, places, cultures and fascinating subjects through interactive learning.</p><span class="status">Integration planned</span></div></article>
+  </section>
+  <div class="note">We are adding and testing each tool one at a time. The existing country guide remains available from “Main website”.</div>
+</main>
+<footer>Xplore the World · Mobile-first tools dashboard</footer>
+</body>
+</html>
