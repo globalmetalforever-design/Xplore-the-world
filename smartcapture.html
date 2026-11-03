@@ -23,6 +23,22 @@ select{padding:10px;border:1px solid var(--line);border-radius:9px;background:wh
 dialog{border:0;border-radius:16px;max-width:440px;width:calc(100% - 30px);padding:20px;box-shadow:0 15px 60px #0004}dialog::backdrop{background:#102a4377}
 @media(max-width:560px){.panel{padding:15px}.tab{flex:1}.actions button{flex:1}}
 </style>
+<style>
+:root{--navy:#080914;--blue:#8b4dff;--teal:#b36aff;--paper:#070811;--ink:#f4f2ff;--muted:#aaa8c8;--line:#30294d;--red:#ff777f}
+body{background:radial-gradient(ellipse at 50% -15%,#251044 0,#090a14 45%,#05060c 100%);color:var(--ink)}
+header{background:linear-gradient(120deg,#080914,#17102d 70%,#261044);border-bottom:1px solid #54318a}
+header p{color:#c7c1e7}.top a{border-color:#7653aa}
+.panel{background:linear-gradient(145deg,#151729,#0d0f1b);border-color:#33264f;box-shadow:0 8px 28px #0008}
+.muted{color:var(--muted)}.tab{background:#211633;color:#cbb8ed;border:1px solid #392653}.tab.active,button.primary{background:linear-gradient(135deg,#7135dd,#a34dff);color:white;box-shadow:0 0 18px #803cff44}
+button.secondary{background:#211a35;color:#e7d9ff;border:1px solid #44305f}button.danger{background:#351b2b;color:#ff9aa5;border:1px solid #6b3049}
+input[type=file],select{background:#111425;color:#f4f2ff;border-color:#493765}
+.preview{background:#080914}.notice{background:#17132a;color:#c9b9e9;border:1px solid #392653}
+.item{border-color:#30294d}.thumb{background:#171a2c}dialog{background:#111322;color:#f4f2ff;border:1px solid #493765}dialog::backdrop{background:#000b}
+.meter{background:#27233a}.meter span{background:linear-gradient(90deg,#7d3fe8,#c06cff)}
+.tabs{position:fixed;z-index:20;bottom:0;left:0;right:0;margin:0;padding:9px max(12px,calc((100% - 900px)/2)) max(9px,env(safe-area-inset-bottom));background:#0c0d19ee;backdrop-filter:blur(16px);border-top:1px solid #33264f;box-shadow:0 -8px 25px #0008}
+.tab{flex:1;border-radius:13px;padding:10px 7px}.tab.active{background:#321b59;border-color:#7545bd}
+main{padding-bottom:105px}
+</style>
 </head>
 <body>
 <header><div class="top"><strong>📷 SMART CAPTURE</strong><a href="index.html">Exit to Home ↗</a></div><h1>Capture. Classify. Organise.</h1><p>Your documents stay in your own browser storage until you export them.</p></header>
