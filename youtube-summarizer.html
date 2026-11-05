@@ -1,30 +1,52 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080914"><title>Smart Summary | Xplore the World</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080914">
+<title>YouTube Summary | Xplore the World</title>
 <style>
 :root{--bg:#070811;--panel:#141628;--ink:#f4f2ff;--muted:#aaa8c8;--line:#34294f;--purple:#8b4dff}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#251044 0,#090a14 45%,#05060c 100%);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
-header{background:linear-gradient(120deg,#080914,#17102d 70%,#261044);border-bottom:1px solid #54318a;padding:17px max(16px,calc((100% - 900px)/2)) 25px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.top a{color:#f1e7ff;text-decoration:none;border:1px solid #7653aa;border-radius:25px;padding:7px 12px;font-size:13px}
-h1{font-size:clamp(27px,5vw,38px);margin:24px 0 4px}header p{margin:0;color:#c7c1e7}main{max-width:900px;margin:auto;padding:20px 16px 50px}
-.panel{background:linear-gradient(145deg,#151729,#0d0f1b);border:1px solid var(--line);border-radius:17px;padding:18px;margin-bottom:14px;box-shadow:0 8px 28px #0008}
-h2{font-size:19px;margin:0 0 10px}.muted{color:var(--muted);font-size:13px}
-label{display:block;font-weight:650;margin:12px 0 6px}input{width:100%;font:inherit;color:var(--ink);background:#101324;border:1px solid #493765;border-radius:11px;padding:12px}input::placeholder{color:#8985a6}
-button{border:0;border-radius:11px;padding:11px 15px;font:inherit;font-weight:650;cursor:pointer}.primary{background:linear-gradient(135deg,#7135dd,#a34dff);color:white;box-shadow:0 0 18px #803cff33}.secondary{background:#211a35;color:#e7d9ff;border:1px solid #44305f}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}
-.notice{background:#17132a;color:#c9b9e9;border:1px solid #392653;border-radius:11px;padding:12px;font-size:13px;margin-top:13px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0}.step{background:#111425;border:1px solid #33264f;border-radius:12px;padding:12px}.step b{display:block;color:#d5b9ff;font-size:13px}.step span{font-size:12px;color:var(--muted)}
-.output{min-height:130px;border:1px dashed #493765;border-radius:12px;padding:15px;color:#aaa8c8;background:#101221}
-button:disabled{opacity:.48;cursor:not-allowed}
-@media(max-width:560px){.panel{padding:15px}.steps{grid-template-columns:1fr}.actions button{flex:1}}
-</style></head><body>
-<header><div class="top"><strong>✦ SMART SUMMARY</strong><a href="index.html">Exit to Home ↗</a></div><h1>Watch less. Understand more.</h1><p>Turn long videos into short, engaging reading without losing the important details.</p></header>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#251044 0,#090a14 45%,#05060c 100%);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+header{background:linear-gradient(120deg,#080914,#17102d 70%,#261044);border-bottom:1px solid #54318a;padding:18px max(16px,calc((100% - 850px)/2)) 26px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.top a{color:#f1e7ff;text-decoration:none;border:1px solid #7653aa;border-radius:25px;padding:7px 12px;font-size:13px}
+h1{font-size:clamp(29px,6vw,42px);line-height:1.15;margin:34px 0 8px}
+header p{margin:0;color:#c7c1e7;max-width:620px}
+main{max-width:850px;margin:auto;padding:28px 16px 55px}
+.panel{background:linear-gradient(145deg,#151729,#0d0f1b);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 28px #0008}
+h2{font-size:21px;margin:0 0 9px}
+p{color:var(--muted);margin:0 0 18px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.step{background:#111425;border:1px solid #33264f;border-radius:12px;padding:13px}
+.step b{display:block;color:#d5b9ff;font-size:13px;margin-bottom:3px}
+.step span{font-size:12px;color:var(--muted)}
+button{display:block;width:100%;border:0;border-radius:12px;padding:14px 18px;font:inherit;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#7135dd,#a34dff);color:white;box-shadow:0 0 18px #803cff33}
+.note{font-size:12px;margin:13px 0 0;color:#8e89aa;text-align:center}
+footer{text-align:center;color:#77738f;font-size:12px;padding:0 16px 25px}
+@media(max-width:560px){.panel{padding:18px}.steps{grid-template-columns:1fr}.step{padding:11px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><strong>✦ XPLORE THE WORLD</strong><a href="index.html">← Home</a></div>
+  <h1>Watch less.<br>Understand more.</h1>
+  <p>Get one concise English summary of a YouTube video, with its main message and most important points.</p>
+</header>
 <main>
-<section class="panel"><h2>Add a YouTube video</h2><p class="muted">Paste the video link. Smart Summary will look for an available caption track or transcript. Speech recognition will not be used.</p><label for="videoUrl">YouTube video URL</label><input id="videoUrl" type="url" value="https://www.youtube.com/watch?v=IMoKJlchd2w" placeholder="https://www.youtube.com/watch?v=…"><div class="actions"><button class="secondary" id="openVideo">Open video</button><button class="secondary" id="clearUrl">Clear</button></div><div class="notice">No transcript is required from you. Caption and transcript discovery will run automatically in the background. Speech recognition will not be used. If no accessible captions or transcript can be found, the app will display: “Video not available to summarize due to YouTube limitations.”</div></section>
-<section class="panel"><h2>Your Smart Summary</h2><p class="muted">A concise 2–3 minute read, expanding only when the subject needs more detail.</p><div class="steps"><div class="step"><b>Essential story</b><span>The central message in plain language</span></div><div class="step"><b>Important details</b><span>Facts, figures, examples and arguments</span></div><div class="step"><b>The takeaway</b><span>What matters and why</span></div></div><div class="output" id="output">Your completed summary will appear here.</div><div class="actions"><button class="primary" id="summarise" disabled title="Secure processing service is not connected yet">Create Smart Summary</button><button class="secondary" id="copyBrief" disabled>Copy summary</button></div><p id="status" class="muted" role="status" aria-live="polite">The secure processing service is not connected yet. Once connected, caption and transcript discovery will run automatically in the background. If no usable transcript is found, the app will stop without attempting speech recognition.</p></section>
+  <section class="panel">
+    <h2>YouTube Quick Summary</h2>
+    <p>Continue to the secure summariser. You will enter your YouTube link there and see the video title and thumbnail before generating a summary.</p>
+    <div class="steps">
+      <div class="step"><b>1. Paste a link</b><span>Enter the YouTube video URL.</span></div>
+      <div class="step"><b>2. Check the video</b><span>Confirm its title and thumbnail.</span></div>
+      <div class="step"><b>3. Get your summary</b><span>Read a short English summary.</span></div>
+    </div>
+    <button onclick="window.location.href='https://xplore-the-world.streamlit.app/'">Open YouTube Summariser →</button>
+    <div class="note">Only videos with captions or transcripts accessible to the service can be summarised.</div>
+  </section>
 </main>
-<script>
-const $=id=>document.getElementById(id);
-history.pushState({smartSummaryPage:true},'',location.href);
-window.addEventListener('popstate',()=>location.replace('index.html'));
-$('openVideo').onclick=()=>{const v=$('videoUrl').value.trim();if(!v){alert('Paste a YouTube link first.');return}try{const u=new URL(v);if(!['youtube.com','www.youtube.com','youtu.be','m.youtube.com'].includes(u.hostname)){alert('Please enter a valid YouTube URL.');return}window.open(u.href,'_blank','noopener')}catch(e){alert('Please enter a valid YouTube URL.')}};
-$('clearUrl').onclick=()=>{$('videoUrl').value=''};
-$('copyBrief').onclick=()=>{const t=$('output').innerText;if(t)navigator.clipboard?.writeText(t)};
-</script></body></html>
+<footer>Xplore the World · YouTube Quick Summary</footer>
+</body>
+</html>
